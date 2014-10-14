@@ -1,0 +1,11 @@
+---
+layout: post
+title: Android4.0とposition:fixedとアニメーション
+date: 2014-10-08
+tags: [android, css]
+---
+
+<p>
+Android 4.0.x の標準ブラウザでみ画面内に <code>position:fixed</code> があってfadein/out系のアニメーションをしていると，アニメーションする要素がz-Indexを突き抜けて一番手前にきているようにみえてしまうことがある．<br >
+これは「fadeIn/outする要素が <code>position:fixed</code> の要素のz-indexよりも小さな場合はz-indexの設定を無視して一番手前に表示されてしまう」という性質によるものらしい．4.0のサポートが必要な場合には注意．<br >
+</p>

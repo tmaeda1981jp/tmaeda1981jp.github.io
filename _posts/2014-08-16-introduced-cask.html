@@ -1,0 +1,84 @@
+---
+layout: post
+title: package.elをやめてCaskを導入してみた
+date: 2014-08-16
+tags: [emacs, cask]
+---
+
+<p>
+巷で噂のcaskを導入してみた．以下導入手順の備忘録．<br >
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">1. caskのインストール</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+macだと <code>brew install cask</code> で良いらしいのだけれど，新しくemacsをインストールしようとした（おそらくemacsをbrewでinstallしていないから）ので，中断して以下のコマンドでインストール．<br >
+</p>
+
+
+{% highlight bash %}
+$ curl -fsSkL https://raw.github.com/cask/cask/master/go | python
+{% endhighlight %}
+
+<p>
+インストール後は <code>~/.cask/bin</code> にパスを通す．<br >
+</p>
+
+
+{% highlight bash %}
+export PATH=$HOME/.cask/bin:$PATH
+{% endhighlight %}
+</div>
+</div>
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">2. Caskファイルを作る</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<code>source</code> に <code>gnu</code>, <code>mepla</code>, <code>marmalade</code>, <code>org</code> を追加<br >
+以前の <code>elpa</code> ディレクトリの中身を見ながら，Caskファイルを作っていく．<br >
+こんな感じ．<br >
+</p>
+
+<ul class="org-ul">
+<li><a href="https://github.com/tmaeda1981jp/dotfiles/blob/master/emacs/Cask">https://github.com/tmaeda1981jp/dotfiles/blob/master/emacs/Cask</a><br >
+</li>
+</ul>
+
+<p>
+最新版のorg-modeが上手くインストールできなくて少しだけ嵌ったけれど，以下の書き方でうまくいった．<br >
+</p>
+
+
+{% highlight emacs-lisp %}
+(source org)
+(depends-on "org-plus-contrib")
+{% endhighlight %}
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">3. cask install</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Caskファイルがある場所で <code>cask install</code> (<code>cask</code> だけでもOK)<br >
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">4. init.elにcaskの読込処理を追記</h2>
+<div class="outline-text-2" id="text-4">
+
+{% highlight emacs-lisp %}
+(require 'cask "~/.cask/cask.el")
+(cask-initialize)
+{% endhighlight %}
+
+<p>
+この手順でとりあえず今まで通りに動いているっぽい．org-modeを最新版にしたせいなのか，随分とorg-modeがカラフルで見易くなった気がする．<br >
+</p>
+</div>
+</div>

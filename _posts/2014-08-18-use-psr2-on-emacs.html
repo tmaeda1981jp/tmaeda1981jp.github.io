@@ -1,0 +1,56 @@
+---
+layout: post
+title: php-modeでPSR-2準拠でコーディングできるようにする
+date: 2014-08-18
+tags: [php, emacs, flycheck]
+---
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><code>PHP_CodeSniffer</code> のインストール</h2>
+<div class="outline-text-2" id="text-1">
+
+{% highlight bash %}
+$ sudo pear install PHP_CodeSniffer
+$ phpcs -i
+The installed coding standards are MySource, PEAR, PHPCS, PSR1, PSR2, Squiz and Zend
+{% endhighlight %}
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">flycheckの設定</h2>
+<div class="outline-text-2" id="text-2">
+
+{% highlight emacs-lisp %}
+(add-hook 'php-mode-hook
+          (lambda ()
+            (setq flycheck-phpcs-standard "PSR2")
+:
+{% endhighlight %}
+</div>
+</div>
+
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">indentの設定</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<code>(require 'php-mode)</code> の前に書けばいい？<br >
+</p>
+
+<ul class="org-ul">
+<li><a href="https://github.com/ejmr/php-mode/issues/155">https://github.com/ejmr/php-mode/issues/155</a><br >
+</li>
+</ul>
+
+
+{% highlight emacs-lisp %}
+(setq php-mode-coding-style (quote psr2))
+(require 'php-mode)
+{% endhighlight %}
+
+<p>
+とりあえず上記の設定でflycheckの結果 = <code>phpcs xxx.php --standard=psr2</code> の結果と合致するようになったし，インデントも綺麗にできるようになった．<br >
+</p>
+</div>
+</div>

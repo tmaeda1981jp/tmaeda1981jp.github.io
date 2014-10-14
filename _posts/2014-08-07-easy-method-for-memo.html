@@ -1,0 +1,22 @@
+---
+layout: post
+title: 数行のちょっとしたメモやコードをファイルに書き出す簡単な方法
+date: 2014-08-07
+tags: [unix]
+---
+
+<p>
+<code>ansible</code> のチュートリアルをやっていたら出てきたのだけれど，すごい便利だった．<br >
+</p>
+
+
+{% highlight bash %}
+$ cat <<_EOD_ > hosts
+[test-servers]
+192.168.33.12
+_EOD_
+{% endhighlight %}
+
+<p>
+<code>_EOD_</code> を入力で終了．エディタを立ち上げるまでもないような簡単なメモにはすごく便利．<br >
+</p>

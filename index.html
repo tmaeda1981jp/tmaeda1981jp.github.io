@@ -1,0 +1,25 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  {% for post in site.posts %}
+    {% capture currentyear %}{{post.date | date: "%Y"}}{% endcapture %}
+    {% if currentyear != year %}
+      {% unless forloop.first %}</ul>{% endunless %}
+      <h1>{{ currentyear }}</h1>
+      <ul>
+      {% capture year %}{{currentyear}}{% endcapture %}
+    {% endif %}
+      <li>
+        <span class="post-date">{{ post.date | date: "%Y/%m/%d" }}</span> 
+        <a href="{{ post.url }}"</li>{{ post.title }}</a>
+        <!-- {% for tag in post.tags %}
+        <span class="tag">{{ tag }}</span>
+        {% endfor %} -->
+      </li>
+  {% endfor %}
+  </ul>
+
+</div>

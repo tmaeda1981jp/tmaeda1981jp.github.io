@@ -1,0 +1,16 @@
+---
+layout: post
+title: Vagrantの共有フォルダ(nfs)が無効になってしまう問題
+date: 2014-08-22
+tags: [vagrant]
+---
+
+<p>
+<code>vagrant provision</code> (ansible)するとvagrantの共有フォルダ(nfs)が無効になってしまう問題が発生していたのだけれど，SELinuxを無効にした後のrebootのタイミングで発生しているようだった．<br >
+</p>
+
+<p>
+SELinuxを無効にしたことが原因なのか再起動が原因なのかは調べていないのでわからないけれど，再起動した時に共有ディレクトリのuser/groupが games/501 から root/root に変わっていたようだった．<br >
+rebootの後のマウントに失敗している？わからないけれど，SELinuxを無効にしなくても特段問題はなさそうだったので，SELinuxを無効化するタスクはコメントアウトしておいた．<br >
+ちょっとモヤモヤが残るので，どこかで時間を作ってもう少し調べてみたい．<br >
+</p>

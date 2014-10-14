@@ -1,0 +1,9 @@
+# Site settings
+title: tmaeda1981jp's notes
+description: "札幌でフリーランスディベロッパで活動しているtmaeda1981jpのblog"
+baseurl: ""
+url: ""
+github_username:  tmaeda1981jp
+paginate_path: "blog/page:num"
+# Build settings
+permalink: /:year/:month/:day/:title.html

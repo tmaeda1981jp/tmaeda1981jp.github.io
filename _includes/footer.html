@@ -1,0 +1,46 @@
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-col-1 column">
+      <h1><i class="fa fa-info-circle fa-fw"></i>About</h1>
+      <p>札幌でフリーランスのソフトウェアディベロッパとして活動している tmaeda1981jp のblogです．</p>
+    </div>
+    <div class="footer-col-2 column">
+      <h1><i class="fa fa-share-alt fa-fw"></i> Links</h1>
+      <p>
+        <ul>
+          <li>
+            <a href="http://www.github.com/tmaeda1981jp" target="_blank">
+              <i class="fa fa-github-alt fa-fw"></i>Github
+            </a>
+          </li>
+          <li>
+            <a href="http://www.facebook.com/tmaeda1981jp" target="_blank">
+              <i class="fa fa-facebook-square fa-fw"></i>Facebook
+            </a>
+          </li>
+          <li>
+            <a href="https://twitter.com/tmaeda1981jp" target="_blank">
+              <i class="fa fa-twitter-square fa-fw"></i>Twitter(inactive)
+            </a>
+          </li>
+          <li>
+            <a href="http://www.smilecode.jp" target="_blank">
+              <i class="fa fa-smile-o fa-fw"></i>Portfolio
+            </a>
+          </li>
+        </ul>
+      </p>
+    </div>
+    <div class="footer-col-3 column">
+      <h1><i class="fa fa-tags fa-fw"></i>Tags</h1>
+      <p>
+      {% for tag in site.tags %}
+        <a href="/tags/#{{ tag[0] }}""><span class="tag">{{ tag[0] }}</span></a>
+      {% endfor %}
+      </p>
+    </div>
+  </div>
+  <div class="wrap copyright">
+    Copyright &copy; 2014 tmaeda1981jp All Rights Reserved.
+  </div>
+</footer>

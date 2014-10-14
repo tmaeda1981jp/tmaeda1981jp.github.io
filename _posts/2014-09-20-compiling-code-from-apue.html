@@ -1,0 +1,91 @@
+---
+layout: post
+title: 詳解UNIXプログラミングのコードをコンパイルして動作させるまで
+date: 2014-09-20
+tags: [unix, compile, c]
+---
+
+<p>
+C言語系の知識が全然なかったのでしばらく動かし方がわからなかったのだけれど，<br >
+<a href="http://unix.stackexchange.com/questions/105483/compiling-code-from-apue">ここ</a> にとても丁寧な解説があった．<br >
+ちなみに，今回はVagrantでubuntuの仮想環境を用意してそこで試した．<br >
+Macでも動作させることができるのかもしれないのだけれど試していない．<br >
+今回はそのあたりも含めての覚書．<br >
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">ubuntu環境の構築</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Vagrantでサクッと用意．<br >
+gccとlibbsd-devが必要．gccは最初から入ってたかも？<br >
+</p>
+
+
+{% highlight ruby %}
+$script = <<SCRIPT
+echo "alias lsa='ls -ltrA'" >> /home/vagrant/.bashrc
+echo "alias lstr='ls -ltr'" >> /home/vagrant/.bashrc
+sudo apt-get install -y gcc libbsd-dev
+SCRIPT
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "hashicorp/precise32"
+  config.vm.provision "shell", inline: $script
+end
+{% endhighlight %}
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">apue.3eのソースコードをDL</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<a href="http://www.apuebook.com/">http://www.apuebook.com/</a> からもってくる．<br >
+ubuntuとファイル共有しておくと楽そうだったので，Vagrantfileがあるところへ．<br >
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">make</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+この手順が抜けていた．言われれば当たり前なのだけれど．．．<br >
+ubuntu側にログインしてDLしたファイルを解凍 &amp;&amp; make<br >
+makeしたときに <code>cannot find -lbsd</code> がでたので，<br >
+<code>libbsd-dev</code> をインストール．<br >
+Vagrantfileに設定を追記して <code>vagrant provision</code> するだけ．<br >
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">ソースコードをコンパイル</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+コンパイルオプションもちゃんとつける<br >
+</p>
+
+
+{% highlight bash %}
+$ gcc -o myls myls.c -I apue.3e/include/ -L apue.3e/lib/ -lapue
+{% endhighlight %}
+
+<p>
+Iがinlude，Lがlibの指定，一番最後のlはlibxxx.soのxxxを見つけてくるための設定&#x2026;?このあたりあんまりわかっていないのでまた今度調べる．<br >
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">参考URL</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li><a href="http://unix.stackexchange.com/questions/105483/compiling-code-from-apue">http://unix.stackexchange.com/questions/105483/compiling-code-from-apue</a><br >
+</li>
+</ul>
+</div>
+</div>
