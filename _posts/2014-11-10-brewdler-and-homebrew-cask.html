@@ -1,0 +1,184 @@
+---
+layout: post
+title: brewdlerとhomebrew caskを使ってみた
+date: 2014-11-10
+tags: [brewdler, homebrew, homebrew-cask]
+---
+
+<p>
+自宅で使用しているマシンを新調したのを契機に <code>brewdler</code> と <code>homebrew-cask</code> を導入してみた．<br >
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">brewdler</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<code>brewdler</code> は <code>homebrew</code> でインストール可能なアプリケーションをrubyのgemfileのような形で管理できるもの． <code>brew bundle</code> というコマンドがあったらしいのだけれど，<a href="https://github.com/Homebrew/homebrew/issues/30815">deprecatedになってしまったらしい</a>ので <code>brewlder</code> を使うことにした．<br >
+</p>
+
+
+<ul class="org-ul">
+<li><a href="https://github.com/andrew/brewdler">https://github.com/andrew/brewdler</a><br >
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">homebrew-cask</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+chromeやfirefoxなど，インターネット上からDLしてインストールするようなアプリケーションを同じくgemfileのような形で管理するための仕組み．<br >
+</p>
+
+
+<ul class="org-ul">
+<li><a href="http://caskroom.io/">http://caskroom.io/</a><br >
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Install</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">brewdler</h3>
+<div class="outline-text-3" id="text-3-1">
+
+{% highlight bash %}
+$ gem install brewdler
+{% endhighlight %}
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2">homebrew-cask</h3>
+<div class="outline-text-3" id="text-3-2">
+
+{% highlight bash %}
+$ brew install caskroom/cask/brew-cask
+{% endhighlight %}
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Setting</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+<code>homebrew-cask</code> をデフォルトの設定のまま使うと，アプリケーションは <code>$HOME/Applications</code> にインストールされてしまう．これだと都合が悪いことがある<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>ので， <code>/Applications</code> にsymbolic linkを貼って置けるように <code>HOMCEEBREW_CASK_OPTS</code> に <code>/Applications</code> を指定しておく．<br >
+</p>
+
+
+{% highlight bash %}
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+{% endhighlight %}
+</div>
+</div>
+
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">Usage</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+<code>brewdler</code> の設定も <code>homebrew-cask</code> の設定も <code>Brewfile</code> 一つにまとめて書いておくことができる．<br >
+下記のような内容で <code>Brewfile</code> を作成し， <code>brewdle install</code> というコマンドを実行することで，記述したアプリケーションをまとめてインストールすることができる．<br >
+</p>
+
+
+{% highlight ruby %}
+brew 'caskroom/cask/brew-cask'
+tap 'caskroom/versions'
+tap 'homebrew/dupes'
+tap 'homebrew/php'
+
+brew 'coreutils'
+brew 'moreutils'
+brew 'findutils'
+brew 'gnu-sed --default-names'
+brew 'zsh'
+brew 'git'
+brew 'git-flow'
+brew 'tig'
+brew 'cvs'
+brew 'svn'
+brew 'wget --with-iri'
+brew 'curl'
+brew 'ack'
+brew 'autoconf'
+brew 'automake'
+brew 'gcc'
+brew 'gawk'
+brew 'openssl'
+brew 'tree'
+brew 'readline'
+brew 'ansible'
+brew 'docker'
+brew 'ant'
+brew 'maven'
+brew 'cask'
+brew 'markdown'
+brew 'sphinx'
+brew 'sqlite'
+brew 'ghc'
+brew 'mongodb'
+brew 'the_silver_searcher'
+brew 'pyenv'
+brew 'pyenv-virtualenv'
+brew 'reattach-to-user-namespace'
+brew 'zlib'
+brew 'rename'
+brew 'chrome-cli'
+brew 'editorconfig'
+brew 'imagemagick'
+brew 'graphicsmagick'
+brew 'tmux'
+brew 'z'
+brew 'rbenv'
+brew 'ruby-build'
+brew 'gettext'
+brew 'nodebrew'
+brew 'phantomjs'
+brew 'spidermonkey'
+brew 'v8'
+brew 'php56'
+brew 'composer'
+brew 'boris'
+brew 'gauche'
+brew 'cmigemo'
+
+# mac apps
+cask 'google-chrome'
+cask 'firefox-ja'
+cask 'dropbox'
+cask 'totalterminal'
+cask 'virtualbox'
+cask 'vagrant'
+cask 'skitch'
+cask 'emacs'
+cask 'adobe-creative-cloud'
+cask 'alfred'
+cask 'genymotion'
+cask 'google-japanese-ime'
+cask 'java'
+cask 'macvim-kaoriya'
+cask 'skype'
+cask 'onepassword'
+cask 'vmware-fusion6'
+cask 'seil'
+{% endhighlight %}
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">&#33050;&#27880;: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+僕の場合は1passwordのブラウザ自動入力がうまく動かなかった．<br >
+</p></div>
+
+
+</div>
+</div>
