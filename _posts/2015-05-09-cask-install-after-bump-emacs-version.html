@@ -1,0 +1,16 @@
+---
+layout: post
+title: emacsをupdateしたあとのcask install
+date: 2015-05-09
+tags: [emacs, cask]
+---
+
+<p>
+自分の環境だと <code>cask install</code> しても古いバージョンのemacs用のパッケージしか取得できなかった。<br >
+以下の方法で新しいemacsを明示的に指定してから実行すると新しいパッケージが取得できた。<br >
+</p>
+
+
+{% highlight Bash %}
+$ EMACS="/Applications/Emacs.app/Contents/MacOS/Emacs" cask install
+{% endhighlight %}
