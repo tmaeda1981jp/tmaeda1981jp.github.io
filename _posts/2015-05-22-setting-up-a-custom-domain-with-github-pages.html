@@ -1,0 +1,44 @@
+---
+layout: post
+title: GitHub Pagesに独自ドメインの設定をした
+date: 2015-05-22
+tags: [github]
+---
+
+<p>
+このblog(というか殴り書きメモ)は、GitHub Pages上にホスティングしているのだけれど、今回独自ドメインの設定をしてみたのでその覚書。<br >
+<code>blog.smilecode.jp</code> という形で、サブドメインで運用する場合の設定。<br >
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">CNAMEファイルを作成してリポジトリのrootに置く</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<code>CNAME</code> の中には設定したいカスタムドメインを書いておく。<br >
+このblogの場合は以下のように設定した。<br >
+</p>
+
+
+{% highlight Bash %}
+blog.smilecode.jp
+{% endhighlight %}
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">DNSサービスプロバイダ上でCNAMEレコードの設定をする</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+VALUEDOMAINの場合は以下の設定を一行加えるだけだった。<br >
+</p>
+
+
+{% highlight Bash %}
+cname blog tmaeda1981jp.github.io.
+{% endhighlight %}
+
+<p>
+何分か待つと設定が反映される。<br >
+</p>
+</div>
+</div>
