@@ -7,3 +7,5 @@ github_username:  tmaeda1981jp
 paginate_path: "blog/page:num"
 # Build settings
 permalink: /:year/:month/:day/:title.html
+gems:
+  - jekyll-sitemap
