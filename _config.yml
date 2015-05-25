@@ -2,10 +2,16 @@
 title: tmaeda1981jp's notes
 description: "フリーランスのソフトウェア開発者として札幌で活動しているtmaeda1981jpの技術blog"
 baseurl: ""
-url: ""
+url: "http://blog.smilecode.jp"
 github_username:  tmaeda1981jp
 paginate_path: "blog/page:num"
 # Build settings
 permalink: /:year/:month/:day/:title.html
-gems:
-  - jekyll-sitemap
+sitemap:
+  file: "/sitemap.xml"
+  exclude:
+    - "/feed.xml"
+  include_posts:
+    - "/index.html"
+  change_frequency_name: "daily"
+  priority_name: "0.5"
