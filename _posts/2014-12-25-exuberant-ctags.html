@@ -10,13 +10,12 @@ tags: [ctags]
 </p>
 
 <ul class="org-ul">
-<li><a href="http://ctags.sourceforge.net/">http://ctags.sourceforge.net/</a><br >
-</li>
+<li><a href="http://ctags.sourceforge.net/">http://ctags.sourceforge.net/</a><br ></li>
 </ul>
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Install</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">Install</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <p>
 Macにはデフォルトでctagsがインストールされているのだけれど，これは <code>Exuberant Ctags</code> じゃないそうなので，homebrewでインストール．<br >
 </p>
@@ -32,9 +31,9 @@ $ brew install ctags
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">Usage</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Usage</h2>
+<div class="outline-text-2" id="text-orgheadline2">
 <p>
 自分は普段emacsを使っているので，emacs用にTAGファイルを作る．emacs用にタグを作るには， <code>e</code> オプションをつけるとよい．任意のディレクトリで下記のコマンドを実行するだけ．RはRecursiveのR．<br >
 </p>
@@ -46,9 +45,9 @@ $ ctags -Re
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">Emacsから使ってみる</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">Emacsから使ってみる</h2>
+<div class="outline-text-2" id="text-orgheadline3">
 <p>
 <code>helm-etags-select</code> を使うのが簡単だった．適当な変数名や関数名にカーソルが当たっていればその定義元にジャンプするし，何もないところで実行すればタグの一覧をhelm風インターフェースで参照することができる．<br >
 元々は <code>C-x c e</code> が割り当てられていたけれど，頻繁に使いそうだったので， <code>M-.</code> に割り当ててみた．元のバッファに戻りたい場合は <code>pop-tag-mark</code> を使うのだけれど，これを <code>M-,(comma)</code> に割り当ててみた．<br >
